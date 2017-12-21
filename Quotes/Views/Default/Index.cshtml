@@ -1,0 +1,54 @@
+﻿@using Quotes.Models
+@model Quotes.Models.IndexViewModel
+
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Welcome!</h1>
+<h2>Submit and rate quotes!</h2>
+
+@Html.ActionLink("Top 10", "HighestRated", "Default", new { area = "TOP10" }, null)
+<br/>
+@Html.ActionLink("Most Recent", "MostRecent", "Default", new { area = "MostRecent" }, null)
+
+
+<hr/>
+@using (Html.BeginForm("CreateQuote", "Default", FormMethod.Post)){
+    <Input Type="text" name ="txt_text" placeholder="Text"/>
+    <Input Type="text" name="txt_author"placeholder="Author" />
+
+    <input type="submit" value="Submit"/>
+}
+<hr/>
+
+@foreach (Quote tempQuote in Model.QuotesList)
+{
+    <div>   
+        @tempQuote.Text 
+    </div>
+    <div>
+        @tempQuote.Author <b>Points:</b> @tempQuote.Points
+    </div>
+    
+
+    @Html.ActionLink(
+        "Vote Up", 
+        "VoteUp",                         // controller action
+        "Default",        // controller
+        new { quoteID = tempQuote.ID, currentView = "Index" },         // action parameters aka route values
+        new { @class = "btn btn-info" }) // html attributes
+
+    @Html.ActionLink(
+        "Vote Down",
+        "VoteDown",                         // controller action
+        "Default",        // controller
+        new { quoteID = tempQuote.ID, currentView = "Index" },         // action parameters aka route values
+        new { @class = "btn btn-info" }) // html attributes
+
+    <hr/>
+}
+
+

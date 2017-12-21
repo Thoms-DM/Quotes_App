@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="QuotesDB-Web.config Connection String" description="QuotesDB Connection String used in web.config by the application to access the database." defaultValue="Server=DESKTOP-DNJAQ3A;Database=Quotes_App;Trusted_Connection=Yes;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\mini_\\Dropbox\\Datamatikker\\3\.\ Semester\\program\\Quotes\\Quotes\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='QuotesDB']/@connectionString" />
+  </parameter>
+</parameters>

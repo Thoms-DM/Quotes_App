@@ -1,0 +1,36 @@
+﻿@using Quotes.Models
+
+
+@{
+    ViewBag.Title = "MostRecent";
+}
+
+<h2>MostRecent</h2>
+
+
+@foreach (Quote tempQuote in Model.QuotesList)
+{
+    <div>
+        @tempQuote.Text
+    </div>
+    <div>
+        @tempQuote.Author <b>Points:</b> @tempQuote.Points
+    </div>
+
+
+    @Html.ActionLink(
+        "Vote Up",
+        "VoteUp", // controller action
+        "Default", // controller
+        new {quoteID = tempQuote.ID, currentView = "MostRecent"}, // action parameters aka route values
+        new {@class = "btn btn-info"}) // html attributes
+
+    @Html.ActionLink(
+        "Vote Down",
+        "VoteDown", // controller action
+        "Default", // controller
+        new {quoteID = tempQuote.ID, currentView = "MostRecent"}, // action parameters aka route values
+        new {@class = "btn btn-info"}) // html attributes
+
+    <hr/>
+}
